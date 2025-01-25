@@ -61,8 +61,23 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
 
     // Método para calcular el poder del Pokémon (puedes ajustar la lógica)
     private int calculatePokemonPower(Pokemon pokemon) {
-        return Integer.parseInt(pokemon.getIndex()) * 10; // Ejemplo básico
+        try {
+            // Validar y convertir peso
+            String weight = pokemon.getWeight();
+            int parsedWeight = weight != null ? Integer.parseInt(weight) : 0;
+
+            // Validar y convertir altura
+            String height = pokemon.getHeight();
+            int parsedHeight = height != null ? Integer.parseInt(height) : 0;
+
+            // Calcular poder (puedes ajustar la lógica)
+            return parsedWeight * parsedHeight;
+        } catch (NumberFormatException e) {
+            // Manejar cualquier excepción y usar un valor predeterminado
+            return 0;
+        }
     }
+
 
     @Override
     public int getItemCount() {

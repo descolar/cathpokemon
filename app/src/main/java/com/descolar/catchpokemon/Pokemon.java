@@ -1,57 +1,79 @@
 package com.descolar.catchpokemon;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pokemon implements Serializable {
-    private String name;
+    private int id;
     private String index;
+    private String name;
     private List<String> types;
-    private String weight;
-    private String height;
+    private String height; // Cambiado a String
+    private String weight; // Cambiado a String
+    private List<String> abilities;
 
-
-    // Constructor sin argumentos requerido por Firebase
-    public Pokemon() {}
-
-    // Constructor completo
-    public Pokemon(String name, String index, String type, String weight, String height) {
+    public Pokemon(int id, String name, List<String> types, String height, String weight, List<String> abilities) {
+        this.id = id;
         this.name = name;
-        this.index = index;
         this.types = types;
-        this.weight = weight;
-        this.height = height;
+        this.height = "0"; // Valor predeterminado
+        this.weight = "0"; // Valor predeterminado
+        this.abilities = abilities;
     }
 
-    // Getters
-    public String getName() {
-        return name;
+    // Constructor sin argumentos
+    public Pokemon() {
+        this.id = 0;
+        this.name = "";
+        this.types = new ArrayList<>();
+        this.height = "";
+        this.weight = "";
+        this.abilities = new ArrayList<>();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
     }
 
     public String getIndex() {
         return index;
     }
 
+    public String getName() {
+        return name;
+    }
 
-    public String getType() {
+    public List<String> getTypes() {
         return types;
     }
 
-
-    public String getWeight() {
-        return weight;
+    public String getTypesAsString() {
+        if (types == null || types.isEmpty()) {
+            return "Desconocido";
+        }
+        return String.join(", ", types);
     }
-
 
     public String getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
+    public String getWeight() {
+        return weight;
+    }
+
+    public List<String> getAbilities() {
+        return abilities;
+    }
+
+    public String getAbilitiesAsString() {
+        if (abilities == null || abilities.isEmpty()) {
+            return "Desconocido";
+        }
+        return String.join(", ", abilities);
     }
 }
+
+
+

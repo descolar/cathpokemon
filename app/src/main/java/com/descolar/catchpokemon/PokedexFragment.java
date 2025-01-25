@@ -18,6 +18,7 @@ import com.descolar.catchpokemon.PokeApiService;
 import com.descolar.catchpokemon.RetrofitClient;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,17 +66,20 @@ public class PokedexFragment extends Fragment {
         List<Pokemon> pokemons = new ArrayList<>();
         for (PokeApiResponse.PokemonResult result : results) {
             String[] urlParts = result.getUrl().split("/");
-            String id = urlParts[urlParts.length - 1]; // Extraer el índice del URL
+            int id = Integer.parseInt(urlParts[urlParts.length - 1]); // Convertir el índice a int
+
             pokemons.add(new Pokemon(
-                    result.getName(),
                     id,
-                    "Unknown Type", // Valores iniciales
-                    "Unknown Weight",
-                    "Unknown Height"
+                    result.getName(),
+                    Collections.singletonList("Unknown Type"), // Lista inicial de tipos
+                    "0", // Peso desconocido
+                   "0", // Altura desconocida
+                    Collections.singletonList("Unknown Ability") // Lista inicial de habilidades
             ));
         }
         return pokemons;
     }
+
 
     private void capturePokemon(Pokemon pokemon) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();

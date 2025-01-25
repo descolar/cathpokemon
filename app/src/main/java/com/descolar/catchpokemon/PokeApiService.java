@@ -3,6 +3,7 @@ package com.descolar.catchpokemon;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.Path;
 
 public interface PokeApiService {
     @GET("pokemon")
@@ -10,4 +11,8 @@ public interface PokeApiService {
             @Query("offset") int offset,
             @Query("limit") int limit
     );
+
+    @GET("pokemon/{id}")
+    Call<Pokemon> getPokemonDetails(@Path("id") int id);
 }
+

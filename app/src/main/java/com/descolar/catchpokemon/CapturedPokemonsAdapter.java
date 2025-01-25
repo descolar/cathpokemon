@@ -1,4 +1,4 @@
-package com.descolar.catchpokemon.adapters;
+package com.descolar.catchpokemon;
 
 import android.view.LayoutInflater;
 import android.view.View;
