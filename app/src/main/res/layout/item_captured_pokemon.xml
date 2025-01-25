@@ -40,7 +40,6 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_trash"
-            android:contentDescription="delete_pokemon"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"

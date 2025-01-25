@@ -34,12 +34,12 @@
             android:gravity="center"
             android:layout_marginTop="4dp" />
 
-        <!-- Poder del Pokémon -->
+
         <TextView
             android:id="@+id/pokemonPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Power: 100"
+            android:text="Power: 1001"
             android:textSize="12sp"
             android:gravity="center"
             android:layout_marginTop="2dp" />

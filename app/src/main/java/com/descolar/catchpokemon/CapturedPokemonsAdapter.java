@@ -35,7 +35,10 @@ public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon pokemon = pokemonList.get(position);
+        // Mostrar el nombre del Pokémon
         holder.name.setText(pokemon.getName());
+        // Mostrar el ID en lugar de "Power"
+        holder.power.setText("ID: " + pokemon.getId());
 
         // Cargar la imagen del Pokémon
         Glide.with(holder.itemView.getContext())
@@ -58,11 +61,13 @@ public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         ImageView image;
+        TextView power;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.pokemonName);
             image = itemView.findViewById(R.id.pokemonImage);
+            power = itemView.findViewById(R.id.pokemonPower);
         }
     }
 }
