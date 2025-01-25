@@ -36,18 +36,20 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon pokemon = pokemonList.get(position);
+
+        // Establecer el nombre del Pokémon
         holder.name.setText(pokemon.getName());
 
-        // Calcular el poder del Pokémon
+        // Usar el ID como poder
         String power = "Power: " + calculatePokemonPower(pokemon);
         holder.power.setText(power);
 
         // Cargar la imagen usando Glide
         Glide.with(holder.itemView.getContext())
-                .load(pokemon.getImageUrl())
+                .load(pokemon.getImageUrl()) // URL de la imagen
                 .into(holder.image);
 
-        // Manejar el clic en la card
+        // Manejar el clic en la tarjeta
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
                 clickListener.onPokemonClick(pokemon);
@@ -55,23 +57,13 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
         });
     }
 
+
     // Método para calcular el poder del Pokémon
     private int calculatePokemonPower(Pokemon pokemon) {
-        try {
-            // Validar y convertir peso
-            String weight = pokemon.getWeight();
-            int parsedWeight = weight != null ? Integer.parseInt(weight) : 0;
-
-            // Validar y convertir altura
-            String height = pokemon.getHeight();
-            int parsedHeight = height != null ? Integer.parseInt(height) : 0;
-
-            // Calcular poder
-            return parsedWeight * parsedHeight;
-        } catch (NumberFormatException e) {
-            return 0; // Valor predeterminado en caso de error
-        }
+        // Usar el ID del Pokémon como poder
+        return pokemon.getId();
     }
+
 
     @Override
     public int getItemCount() {

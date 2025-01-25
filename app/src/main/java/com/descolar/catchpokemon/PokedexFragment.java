@@ -1,6 +1,7 @@
 package com.descolar.catchpokemon;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,11 +85,19 @@ public class PokedexFragment extends Fragment {
 
 
     private void capturePokemon(Pokemon pokemon) {
+        // Verifica que el ID no sea nulo o vacío antes de proceder
+        if (pokemon.getId() == 0) {
+            Toast.makeText(getContext(), "Invalid Pokémon ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Log.d("PokedexFragment", "ID del Pokémon seleccionado: " + pokemon.getId());
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("captured_pokemons")
-                .document(pokemon.getIndex()) // Usamos el índice como ID único
-                .set(pokemon)
+                .document(String.valueOf(pokemon.getId())) // Usar el ID como documento
+                .set(pokemon) // Guardar el objeto Pokémon completo
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getContext(), "Captured: " + pokemon.getName(), Toast.LENGTH_SHORT).show();
                 })
@@ -96,5 +105,6 @@ public class PokedexFragment extends Fragment {
                     Toast.makeText(getContext(), "Failed to capture: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
 
 }
