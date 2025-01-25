@@ -81,8 +81,8 @@ public class PokedexFragment extends Fragment {
                     id,
                     result.getName(),
                     Collections.singletonList("Unknown Type"),
-                    "0",
-                    "0",
+                    0,
+                    0,
                     Collections.singletonList("Unknown Ability"),
                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"
             ));

@@ -9,12 +9,12 @@ public class Pokemon implements Serializable {
     private String index;
     private String name;
     private List<String> types;
-    private String height; // Cambiado a String
-    private String weight; // Cambiado a String
+    private int height; // Cambiado a String
+    private int weight; // Cambiado a String
     private List<String> abilities;
     private String imageUrl;
 
-    public Pokemon(int id, String name, List<String> types, String height, String weight, List<String> abilities, String imageUrl) {
+    public Pokemon(int id, String name, List<String> types, int height, int weight, List<String> abilities, String imageUrl) {
         this.id = id;
         this.name = name;
         this.types = types;
@@ -29,8 +29,8 @@ public class Pokemon implements Serializable {
         this.id = 0;
         this.name = "";
         this.types = new ArrayList<>();
-        this.height = "";
-        this.weight = "";
+        this.height = 0;
+        this.weight = 0;
         this.abilities = new ArrayList<>();
         this.imageUrl = "";
     }
@@ -61,11 +61,11 @@ public class Pokemon implements Serializable {
         return String.join(", ", types);
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
