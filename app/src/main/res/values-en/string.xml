@@ -41,4 +41,8 @@
     <string name="men_cerrar_sesion">You have successfully logged out</string>
     <string name="error_eliminar_pokemon">Error deleting Pokémon</string>
     <string name="mensaje_eliminados">Pokémon successfully deleted</string>
+
+    <string name="pokemon_index">Pokédex Index: %d</string>
+    <string name="pokemon_types">Types: %s</string>
+    <string name="pokemon_weight_height">Weight: %d, Height: %d</string>
 </resources>

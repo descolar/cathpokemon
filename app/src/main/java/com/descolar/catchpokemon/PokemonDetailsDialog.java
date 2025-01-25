@@ -40,6 +40,12 @@ public class PokemonDetailsDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_pokemon_details, container, false);
 
+        // Encuentra el botón de cerrar
+        ImageView closeButton = view.findViewById(R.id.dialogCloseButton);
+
+        // Configura la acción del botón para cerrar el diálogo
+        closeButton.setOnClickListener(v -> dismiss());
+
         // Referencias a los elementos del layout
         ImageView imageView = view.findViewById(R.id.dialogPokemonImage);
         TextView nameTextView = view.findViewById(R.id.dialogPokemonName);
@@ -53,15 +59,20 @@ public class PokemonDetailsDialog extends DialogFragment {
                 .into(imageView);
 
         nameTextView.setText(pokemon.getName());
-        indexTextView.setText("Índice de Pokédex: " + pokemon.getId());
-        typesTextView.setText("Tipos: " + pokemon.getTypesAsString());
-        weightHeightTextView.setText("Peso: " + pokemon.getWeight() + ", Altura: " + pokemon.getHeight());
+        indexTextView.setText(getString(R.string.pokemon_index, pokemon.getId()));
+        typesTextView.setText(getString(R.string.pokemon_types, pokemon.getTypesAsString()));
+        weightHeightTextView.setText(getString(R.string.pokemon_weight_height, pokemon.getWeight(), pokemon.getHeight()));
+
+
 
         // Eliminar (botón no funcional aún)
         ImageView deleteButton = view.findViewById(R.id.dialogDeleteButton);
         deleteButton.setOnClickListener(v -> {
             // Por ahora no hacemos nada
         });
+
+        // Configurar acción del botón de cerrar
+        closeButton.setOnClickListener(v -> dismiss());
 
         return view;
     }

@@ -1,19 +1,32 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="16dp">
 
-    <!-- Imagen ampliada -->
+    <!-- Botón de cerrar (X) -->
+    <ImageView
+        android:id="@+id/dialogCloseButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_close"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
+    <!-- Imagen del Pokémon -->
     <ImageView
         android:id="@+id/dialogPokemonImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_gravity="center"
-    />
+        android:layout_marginTop="16dp"
+        android:contentDescription="pokemon_image"
+        app:layout_constraintTop_toBottomOf="@id/dialogCloseButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Nombre del Pokémon -->
     <TextView
@@ -22,36 +35,40 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="center"
         android:layout_marginTop="8dp"
-        android:text="Nombre del Pokémon" />
+        app:layout_constraintTop_toBottomOf="@id/dialogPokemonImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Índice de Pokédex -->
     <TextView
         android:id="@+id/dialogPokemonIndex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="4dp"
-        android:text="Índice de Pokédex: 1" />
+        app:layout_constraintTop_toBottomOf="@id/dialogPokemonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Tipos -->
     <TextView
         android:id="@+id/dialogPokemonTypes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="4dp"
-        android:text="Tipos: Planta, Veneno" />
+        app:layout_constraintTop_toBottomOf="@id/dialogPokemonIndex"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Peso y Altura -->
     <TextView
         android:id="@+id/dialogPokemonWeightHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="4dp"
-        android:text="Peso: 69, Altura: 7" />
+        app:layout_constraintTop_toBottomOf="@id/dialogPokemonTypes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Botón de eliminar -->
     <ImageView
@@ -61,7 +78,9 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_trash"
         android:contentDescription="@string/delete_pokemon"
-        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/dialogPokemonWeightHeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/holo_red_dark" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
