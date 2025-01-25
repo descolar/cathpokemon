@@ -32,10 +32,9 @@ public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemo
         Pokemon pokemon = pokemonList.get(position);
         holder.name.setText(pokemon.getName());
 
-        String imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemon.getIndex() + ".png";
 
         Glide.with(holder.itemView.getContext())
-                .load(imageUrl)
+                .load(pokemon.getImageUrl())
                 .into(holder.image);
     }
 

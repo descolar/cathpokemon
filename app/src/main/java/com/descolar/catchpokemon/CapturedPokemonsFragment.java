@@ -57,7 +57,6 @@ public class CapturedPokemonsFragment extends Fragment {
 
     // Método para agregar un Pokémon a la lista y actualizar el adaptador
     public void addCapturedPokemon(Pokemon pokemon) {
-        Log.d("PokedexFragment", "ID del Pokémon seleccionado: " + pokemon.getId());
 
         capturedPokemons.add(pokemon);
         adapter.notifyItemInserted(capturedPokemons.size() - 1);

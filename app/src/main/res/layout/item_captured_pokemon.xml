@@ -18,8 +18,8 @@
         <!-- Imagen del Pokémon -->
         <ImageView
             android:id="@+id/pokemonImage"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:contentDescription="pokemon_image"
             android:layout_gravity="center" />
 
