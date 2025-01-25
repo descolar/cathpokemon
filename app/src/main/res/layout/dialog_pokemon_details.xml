@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Imagen del Pokémon -->
+    <ImageView
+        android:id="@+id/pokemonImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"/>
+
+    <!-- Nombre del Pokémon -->
+    <TextView
+        android:id="@+id/pokemonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"/>
+
+    <!-- Tipo del Pokémon -->
+    <TextView
+        android:id="@+id/pokemonType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"/>
+
+    <!-- Peso del Pokémon -->
+    <TextView
+        android:id="@+id/pokemonWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"/>
+
+    <!-- Altura del Pokémon -->
+    <TextView
+        android:id="@+id/pokemonHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Altura"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"/>
+
+    <!-- Botón de eliminar -->
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Pokémon"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

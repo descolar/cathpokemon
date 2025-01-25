@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <!-- Imagen del Pokémon -->
+        <ImageView
+            android:id="@+id/pokemonImage"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="pokemon_image"
+            android:layout_gravity="center" />
+
+        <!-- Nombre del Pokémon -->
+        <TextView
+            android:id="@+id/pokemonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pokemon Name"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="4dp" />
+
+        <!-- Botón de eliminar -->
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_trash"
+            android:contentDescription="delete_pokemon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            app:tint="@color/holo_red_dark" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

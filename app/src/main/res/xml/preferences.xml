@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <!-- Opción para cambiar el idioma -->
+        <ListPreference
+            android:key="idioma"
+            android:title="Idioma"
+            android:summary="Selecciona el idioma de la aplicación"
+            android:defaultValue="es"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"
+            android:dialogTitle="Selecciona el idioma"/>
+
+        <!-- Opción para eliminar todos los Pokémon -->
+        <SwitchPreferenceCompat
+            android:key="eliminar_todos_pokemon"
+            android:title="Eliminar todos los Pokémon"
+            android:summary="Permite eliminar todos los Pokémon capturados"
+            android:defaultValue="false" />
+
+        <!-- Opción de "Acerca de" -->
+        <Preference
+            android:key="about"
+            android:title="Acerca de"
+            android:summary="Información de la app"
+            android:defaultValue="false"/>
+
+        <!-- Opción de "Ayuda y preguntas frecuentes" -->
+        <Preference
+            android:key="help"
+            android:title="Ayuda"
+            android:summary="Respuestas a preguntas frecuentes"/>
+
+        <!-- Cerrar sesión -->
+        <Preference
+            android:key="logout"
+            android:title="Cerrar sesión"
+            android:summary="Cerrar sesión de la aplicación"/>
+
+
+
+</androidx.preference.PreferenceScreen>
