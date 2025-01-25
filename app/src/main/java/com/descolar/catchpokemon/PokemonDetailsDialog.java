@@ -7,17 +7,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import com.bumptech.glide.Glide;
 import com.descolar.catchpokemon.Pokemon;
 import com.descolar.catchpokemon.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class PokemonDetailsDialog extends DialogFragment {
 
     private static final String ARG_POKEMON = "pokemon";
     private Pokemon pokemon;
+
+    // Interfaz para notificar al fragmento
+    public interface OnPokemonDeletedListener {
+        void onPokemonDeleted(Pokemon pokemon);
+    }
+
+    private OnPokemonDeletedListener listener;
+
+    public void setOnPokemonDeletedListener(OnPokemonDeletedListener listener) {
+        this.listener = listener;
+    }
 
     public static PokemonDetailsDialog newInstance(Pokemon pokemon) {
         PokemonDetailsDialog dialog = new PokemonDetailsDialog();
@@ -68,7 +82,7 @@ public class PokemonDetailsDialog extends DialogFragment {
         // Eliminar (botón no funcional aún)
         ImageView deleteButton = view.findViewById(R.id.dialogDeleteButton);
         deleteButton.setOnClickListener(v -> {
-            // Por ahora no hacemos nada
+            deletePokemonFromDatabase(pokemon);
         });
 
         // Configurar acción del botón de cerrar
@@ -76,5 +90,29 @@ public class PokemonDetailsDialog extends DialogFragment {
 
         return view;
     }
+    private void deletePokemonFromDatabase(Pokemon pokemon) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("captured_pokemons")
+                .document(String.valueOf(pokemon.getId())) // El ID del Pokémon
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), pokemon.getName() + " eliminado", Toast.LENGTH_SHORT).show();
+
+                    // Notificar al fragmento
+                    if (listener != null) {
+                        listener.onPokemonDeleted(pokemon);
+                    }
+
+                    dismiss(); // Cierra el diálogo
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Error al eliminar el Pokémon", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
+
+
 }
 

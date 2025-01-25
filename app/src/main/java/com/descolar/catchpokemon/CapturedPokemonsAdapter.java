@@ -9,15 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemonsAdapter.ViewHolder> {
 
     private List<Pokemon> pokemonList;
+    private final OnPokemonClickListener listener;
 
-    public CapturedPokemonsAdapter(List<Pokemon> pokemonList) {
+    public interface OnPokemonClickListener {
+        void onPokemonClick(Pokemon pokemon);
+    }
+
+    public CapturedPokemonsAdapter(List<Pokemon> pokemonList, OnPokemonClickListener listener) {
         this.pokemonList = pokemonList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,15 +37,16 @@ public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemo
         Pokemon pokemon = pokemonList.get(position);
         holder.name.setText(pokemon.getName());
 
-
+        // Cargar la imagen del Pokémon
         Glide.with(holder.itemView.getContext())
                 .load(pokemon.getImageUrl())
                 .into(holder.image);
 
-        // Abrir el diálogo al hacer clic
+        // Manejar clics
         holder.itemView.setOnClickListener(v -> {
-            PokemonDetailsDialog dialog = PokemonDetailsDialog.newInstance(pokemon);
-            dialog.show(((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager(), "PokemonDetailsDialog");
+            if (listener != null) {
+                listener.onPokemonClick(pokemon);
+            }
         });
     }
 

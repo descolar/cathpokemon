@@ -10,13 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CapturedPokemonsFragment extends Fragment {
+public class CapturedPokemonsFragment extends Fragment implements PokemonDetailsDialog.OnPokemonDeletedListener {
 
     private RecyclerView recyclerView;
     private CapturedPokemonsAdapter adapter;
@@ -30,6 +29,9 @@ public class CapturedPokemonsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerViewCapturedPokemons);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3)); // Mostrar 3 Pokémon por fila
 
+        adapter = new CapturedPokemonsAdapter(capturedPokemons, this::showPokemonDetailsDialog);
+        recyclerView.setAdapter(adapter);
+
         loadCapturedPokemons();
 
         return view;
@@ -42,9 +44,9 @@ public class CapturedPokemonsFragment extends Fragment {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
-                        List<Pokemon> pokemons = queryDocumentSnapshots.toObjects(Pokemon.class);
-                        adapter = new CapturedPokemonsAdapter(pokemons);
-                        recyclerView.setAdapter(adapter);
+                        capturedPokemons.clear();
+                        capturedPokemons.addAll(queryDocumentSnapshots.toObjects(Pokemon.class));
+                        adapter.notifyDataSetChanged(); // Actualiza el RecyclerView
                     } else {
                         Toast.makeText(getContext(), "No Pokémon captured yet.", Toast.LENGTH_SHORT).show();
                     }
@@ -56,14 +58,28 @@ public class CapturedPokemonsFragment extends Fragment {
 
     // Método para agregar un Pokémon a la lista y actualizar el adaptador
     public void addCapturedPokemon(Pokemon pokemon) {
-
         capturedPokemons.add(pokemon);
         adapter.notifyItemInserted(capturedPokemons.size() - 1);
     }
 
     private void showPokemonDetailsDialog(Pokemon pokemon) {
         PokemonDetailsDialog dialog = PokemonDetailsDialog.newInstance(pokemon);
+        dialog.setOnPokemonDeletedListener(this); // Configurar el listener
         dialog.show(getChildFragmentManager(), "PokemonDetailsDialog");
     }
 
+    @Override
+    public void onPokemonDeleted(Pokemon pokemon) {
+        // Buscar el Pokémon en la lista local por ID
+        for (int i = 0; i < capturedPokemons.size(); i++) {
+            if (capturedPokemons.get(i).getId() == pokemon.getId()) {
+                capturedPokemons.remove(i); // Elimina el Pokémon de la lista local
+                adapter.notifyItemRemoved(i); // Notifica al adaptador que el elemento fue eliminado
+                break;
+            }
+        }
+
+        // Muestra un mensaje confirmando la eliminación
+        Toast.makeText(getContext(), pokemon.getName() + " eliminado de la lista", Toast.LENGTH_SHORT).show();
+    }
 }
