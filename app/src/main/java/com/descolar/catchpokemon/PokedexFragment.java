@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.descolar.catchpokemon.adapters.PokedexAdapter;
+import com.descolar.catchpokemon.PokedexAdapter;
 import com.descolar.catchpokemon.Pokemon;
 import com.descolar.catchpokemon.PokeApiResponse;
 //import com.descolar.catchpokemon.PokemonResult;
@@ -66,19 +66,21 @@ public class PokedexFragment extends Fragment {
         List<Pokemon> pokemons = new ArrayList<>();
         for (PokeApiResponse.PokemonResult result : results) {
             String[] urlParts = result.getUrl().split("/");
-            int id = Integer.parseInt(urlParts[urlParts.length - 1]); // Convertir el índice a int
+            int id = Integer.parseInt(urlParts[urlParts.length - 1]);
 
             pokemons.add(new Pokemon(
                     id,
                     result.getName(),
-                    Collections.singletonList("Unknown Type"), // Lista inicial de tipos
-                    "0", // Peso desconocido
-                   "0", // Altura desconocida
-                    Collections.singletonList("Unknown Ability") // Lista inicial de habilidades
+                    Collections.singletonList("Unknown Type"),
+                    "0",
+                    "0",
+                    Collections.singletonList("Unknown Ability"),
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"
             ));
         }
         return pokemons;
     }
+
 
 
     private void capturePokemon(Pokemon pokemon) {

@@ -1,18 +1,15 @@
-package com.descolar.catchpokemon.adapters;
+package com.descolar.catchpokemon;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.descolar.catchpokemon.OnPokemonCaptureListener;
 import com.descolar.catchpokemon.Pokemon;
 import com.descolar.catchpokemon.R;
-import com.descolar.catchpokemon.PokeApiResponse;
 import java.util.List;
 
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHolder> {
@@ -41,17 +38,16 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
         Pokemon pokemon = pokemonList.get(position);
         holder.name.setText(pokemon.getName());
 
-        // Supongamos que el poder del Pokémon es un valor calculado o extraído
+        // Calcular el poder del Pokémon
         String power = "Power: " + calculatePokemonPower(pokemon);
         holder.power.setText(power);
 
-        // URL de la imagen del Pokémon
-        String imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemon.getIndex() + ".png";
-
+        // Cargar la imagen usando Glide
         Glide.with(holder.itemView.getContext())
-                .load(imageUrl)
+                .load(pokemon.getImageUrl())
                 .into(holder.image);
 
+        // Manejar el clic en la card
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
                 clickListener.onPokemonClick(pokemon);
@@ -59,7 +55,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
         });
     }
 
-    // Método para calcular el poder del Pokémon (puedes ajustar la lógica)
+    // Método para calcular el poder del Pokémon
     private int calculatePokemonPower(Pokemon pokemon) {
         try {
             // Validar y convertir peso
@@ -70,14 +66,12 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
             String height = pokemon.getHeight();
             int parsedHeight = height != null ? Integer.parseInt(height) : 0;
 
-            // Calcular poder (puedes ajustar la lógica)
+            // Calcular poder
             return parsedWeight * parsedHeight;
         } catch (NumberFormatException e) {
-            // Manejar cualquier excepción y usar un valor predeterminado
-            return 0;
+            return 0; // Valor predeterminado en caso de error
         }
     }
-
 
     @Override
     public int getItemCount() {
@@ -96,5 +90,4 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
             image = itemView.findViewById(R.id.pokemonImage);
         }
     }
-
 }

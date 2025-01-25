@@ -12,14 +12,16 @@ public class Pokemon implements Serializable {
     private String height; // Cambiado a String
     private String weight; // Cambiado a String
     private List<String> abilities;
+    private String imageUrl;
 
-    public Pokemon(int id, String name, List<String> types, String height, String weight, List<String> abilities) {
+    public Pokemon(int id, String name, List<String> types, String height, String weight, List<String> abilities, String imageUrl) {
         this.id = id;
         this.name = name;
         this.types = types;
-        this.height = "0"; // Valor predeterminado
-        this.weight = "0"; // Valor predeterminado
+        this.height = height;
+        this.weight = weight;
         this.abilities = abilities;
+        this.imageUrl = imageUrl;
     }
 
     // Constructor sin argumentos
@@ -30,6 +32,7 @@ public class Pokemon implements Serializable {
         this.height = "";
         this.weight = "";
         this.abilities = new ArrayList<>();
+        this.imageUrl = "";
     }
 
     public int getId() {
@@ -42,6 +45,9 @@ public class Pokemon implements Serializable {
 
     public String getName() {
         return name;
+    }
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public List<String> getTypes() {
