@@ -6,10 +6,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.descolar.catchpokemon.R;
-import com.descolar.catchpokemon.Pokemon;
+
 import java.util.List;
 
 public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemonsAdapter.ViewHolder> {
@@ -36,6 +36,12 @@ public class CapturedPokemonsAdapter extends RecyclerView.Adapter<CapturedPokemo
         Glide.with(holder.itemView.getContext())
                 .load(pokemon.getImageUrl())
                 .into(holder.image);
+
+        // Abrir el diálogo al hacer clic
+        holder.itemView.setOnClickListener(v -> {
+            PokemonDetailsDialog dialog = PokemonDetailsDialog.newInstance(pokemon);
+            dialog.show(((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager(), "PokemonDetailsDialog");
+        });
     }
 
     @Override

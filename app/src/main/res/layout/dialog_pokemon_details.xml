@@ -1,64 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center">
 
-    <!-- Imagen del Pokémon -->
+    <!-- Imagen ampliada -->
     <ImageView
-        android:id="@+id/pokemonImage"
+        android:id="@+id/dialogPokemonImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+    />
 
     <!-- Nombre del Pokémon -->
     <TextView
-        android:id="@+id/pokemonName"
+        android:id="@+id/dialogPokemonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre"
         android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
         android:layout_marginTop="8dp"
-        android:layout_gravity="center"/>
+        android:text="Nombre del Pokémon" />
 
-    <!-- Tipo del Pokémon -->
+    <!-- Índice de Pokédex -->
     <TextView
-        android:id="@+id/pokemonType"
+        android:id="@+id/dialogPokemonIndex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tipo"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center"/>
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="Índice de Pokédex: 1" />
 
-    <!-- Peso del Pokémon -->
+    <!-- Tipos -->
     <TextView
-        android:id="@+id/pokemonWeight"
+        android:id="@+id/dialogPokemonTypes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Peso"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center"/>
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="Tipos: Planta, Veneno" />
 
-    <!-- Altura del Pokémon -->
+    <!-- Peso y Altura -->
     <TextView
-        android:id="@+id/pokemonHeight"
+        android:id="@+id/dialogPokemonWeightHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Altura"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center"/>
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="Peso: 69, Altura: 7" />
 
     <!-- Botón de eliminar -->
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eliminar Pokémon"
+    <ImageView
+        android:id="@+id/dialogDeleteButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center"/>
+        android:src="@drawable/ic_trash"
+        android:contentDescription="@string/delete_pokemon"
+        android:layout_gravity="center"
+        app:tint="@color/holo_red_dark" />
 
 </LinearLayout>
