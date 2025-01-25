@@ -13,6 +13,6 @@ public interface PokeApiService {
     );
 
     @GET("pokemon/{id}")
-    Call<Pokemon> getPokemonDetails(@Path("id") int id);
+    Call<Object> getPokemonDetails(@Path("id") int id);
 }
 
