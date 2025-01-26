@@ -31,6 +31,7 @@
     <string name="delete_pokemon_title">Delete Pokémon</string>
     <string name="delete_pokemon_message">Are you sure you want to delete this Pokémon?</string>
     <string name="delete">Delete</string>
+    <string name="logout_message">Log out of the application</string>
 
     <string name="pregunta_idioma">Do you want to change the applications language?</string>
     <string name="cambio_idioma">Language Change</string>
@@ -45,4 +46,9 @@
     <string name="pokemon_index">Pokédex Index: %d</string>
     <string name="pokemon_types">Types: %s</string>
     <string name="pokemon_weight_height">Weight: %d, Height: %d</string>
+
+    <string name="selecciona_idioma">Select the language</string>
+    <string name="configuracion_idioma">Language</string>
+    <string name="cambio_idioma_aplicado">Language has been changed</string>
+
 </resources>

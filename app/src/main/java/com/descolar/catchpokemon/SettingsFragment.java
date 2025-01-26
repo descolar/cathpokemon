@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.Locale;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
-
+    private UserPreferences userPreferences;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
 
@@ -35,28 +35,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Cargar las preferencias desde el XML
         setPreferencesFromResource(R.xml.preferences, rootKey);
 
-        // Inicializar Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-
+        // Inicializar preferencias de usuario
+        userPreferences = new UserPreferences(requireContext());
         // Configuración del idioma
         ListPreference languagePreference = findPreference("idioma");
         if (languagePreference != null) {
+            // Establecer el idioma actual como valor seleccionado
+            languagePreference.setValue(userPreferences.getLanguage());
+
             languagePreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                // Mostrar un diálogo para confirmar el cambio de idioma
-                new android.app.AlertDialog.Builder(getContext())
-                        .setTitle(R.string.cambio_idioma)
-                        .setMessage(R.string.pregunta_idioma)
-                        .setPositiveButton("Sí", (dialog, which) -> {
-                            setLocale(newValue.toString());
-                            startActivity(new Intent(getContext(), MainActivity.class));
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return false; // Evitar el cambio automático, manejarlo en el diálogo
+                String selectedLanguage = newValue.toString();
+
+                // Guardar la preferencia y aplicar el idioma
+                userPreferences.setLanguage(selectedLanguage);
+                applyLanguageChange(selectedLanguage);
+
+                return true; // Permitir el cambio
             });
         }
+        // Inicializar Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
-        // Configuración de la opción "Eliminar Pokémon"
+                // Configuración de la opción "Eliminar Pokémon"
         SwitchPreferenceCompat eliminarTodosPokemonPreference = findPreference("eliminar_todos_pokemon");
         if (eliminarTodosPokemonPreference != null) {
             eliminarTodosPokemonPreference.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -122,7 +122,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Reiniciar actividad para aplicar el cambio de idioma
         getActivity().recreate();
     }
+    private void applyLanguageChange(String languageCode) {
+        // Cambiar el idioma de la aplicación
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
 
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+        // Reiniciar la actividad principal para aplicar los cambios
+        Toast.makeText(getContext(), R.string.cambio_idioma_aplicado, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
+    }
     // Función para eliminar todos los Pokémon de Firestore
     private void eliminarTodosLosPokemon() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();

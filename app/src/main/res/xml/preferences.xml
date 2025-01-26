@@ -5,25 +5,24 @@
         <!-- Opción para cambiar el idioma -->
         <ListPreference
             android:key="idioma"
-            android:title="Idioma"
-            android:summary="Selecciona el idioma de la aplicación"
-            android:defaultValue="es"
-            android:entries="@array/language_entries"
+            android:title="@string/configuracion_idioma"
+            android:summary="@string/selecciona_idioma"
+            android:entries="@array/languages_array"
             android:entryValues="@array/language_values"
-            android:dialogTitle="Selecciona el idioma"/>
+            android:defaultValue="en" />
 
         <!-- Opción para eliminar todos los Pokémon -->
         <SwitchPreferenceCompat
             android:key="eliminar_todos_pokemon"
-            android:title="Eliminar todos los Pokémon"
-            android:summary="Permite eliminar todos los Pokémon capturados"
+            android:title="@string/delete_pokemon"
+            android:summary="@string/enable_deletion"
             android:defaultValue="false" />
 
         <!-- Opción de "Acerca de" -->
         <Preference
             android:key="about"
-            android:title="Acerca de"
-            android:summary="Información de la app"
+            android:title="@string/about_title"
+            android:summary="@string/about_message"
             android:defaultValue="false"/>
 
         <!-- Opción de "Ayuda y preguntas frecuentes" -->
@@ -35,8 +34,8 @@
         <!-- Cerrar sesión -->
         <Preference
             android:key="logout"
-            android:title="Cerrar sesión"
-            android:summary="Cerrar sesión de la aplicación"/>
+            android:title="@string/logout"
+            android:summary="@string/logout_message"/>
 
 
 
