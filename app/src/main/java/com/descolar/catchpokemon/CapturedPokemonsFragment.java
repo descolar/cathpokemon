@@ -55,6 +55,12 @@ public class CapturedPokemonsFragment extends Fragment implements PokemonDetails
                     Toast.makeText(getContext(), "Failed to load captured Pokémon: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+    public void reloadCapturedPokemons() {
+        capturedPokemons.clear(); // Limpia la lista actual
+        adapter.notifyDataSetChanged(); // Notifica al adaptador que la lista está vacía
+        loadCapturedPokemons(); // Recarga los datos desde Firestore
+    }
+
 
     // Método para agregar un Pokémon a la lista y actualizar el adaptador
     public void addCapturedPokemon(Pokemon pokemon) {

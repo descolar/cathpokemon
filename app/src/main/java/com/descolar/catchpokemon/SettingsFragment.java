@@ -68,9 +68,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             .setIcon(R.drawable.ic_trash)
                             .setPositiveButton("Sí", (dialog, which) -> {
                                 eliminarTodosLosPokemon();
+
                             }).setNegativeButton("No", (dialog, which) -> {
-                                eliminarTodosPokemonPreference.setChecked(false);
-                            }).show();
+                              //  eliminarTodosPokemonPreference.setChecked(false);
+                             }).show();
                 }
                 return true;
             });
@@ -153,6 +154,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         Toast.makeText(getContext(), R.string.error_eliminar_pokemon, Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    // Notificar al fragmento de capturados
+    private void actualizarCapturedPokemonsFragment() {
+        Fragment fragment = requireActivity().getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment)
+                .getChildFragmentManager()
+                .findFragmentById(R.id.nav_capturedPokemonsFragment);
+
+        if (fragment instanceof CapturedPokemonsFragment) {
+            ((CapturedPokemonsFragment) fragment).reloadCapturedPokemons();
+        }
     }
 
     // Mostrar el diálogo "Acerca de"
