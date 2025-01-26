@@ -141,7 +141,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     // Función para eliminar todos los Pokémon de Firestore
     private void eliminarTodosLosPokemon() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("capturados")
+        db.collection("captured_pokemons")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
