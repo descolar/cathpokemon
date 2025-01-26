@@ -163,7 +163,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         new android.app.AlertDialog.Builder(getContext())
                 .setTitle(R.string.menu_acerca_de)
                 .setIcon(R.drawable.ic_settings)
-                .setMessage(R.string.mensaje_acerca)
+                .setMessage(R.string.about_message)
                 .setPositiveButton("OK", null)
                 .show();
     }

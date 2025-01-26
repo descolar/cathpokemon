@@ -1,63 +1,75 @@
 <resources>
+    <!-- Interfaz General -->
     <string name="app_name">CatchPokemon</string>
+    <string name="title_activity_splash">ActividadSplash</string>
+    <string name="loading">Cargando...</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+
+    <!-- Tabs y Navegación -->
+    <string name="tab_captured">Capturados</string>
+    <string name="tab_pokedex">Pokédex</string>
+    <string name="tab_settings">Configuración</string>
+
+    <!-- Autenticación -->
     <string name="login_screen_title">Iniciar Sesión</string>
     <string name="email_hint">Correo Electrónico</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar Sesión</string>
     <string name="google_login_button">Iniciar Sesión con Google</string>
     <string name="no_account">¿No tienes una cuenta? Regístrate ahora</string>
-    <string name="title_activity_splash">ActividadSplash</string>
-    <string name="tab_captured">Capturados</string>
-    <string name="tab_pokedex">Pokédex</string>
-    <string name="tab_settings">Configuración</string>
-    <string name="capture">Capturar</string>
-    <string name="loading">Cargando...</string>
-    <string name="enable_deletion">Habilitar Eliminación de Pokémon</string>
-    <string name="user_email">Usuario: %1$s</string>
-    <string name="language">Idioma</string>
-    <string name="delete_pokemon">Eliminar mis Pokémon</string>
-    <string name="pokemon_deleted">Mis Pokémon han sido eliminados</string>
-    <string name="about_app">Acerca de</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="logout_message">Cerrar sesión de la aplicación</string>
-    <string name="switch_language">Selecciona el idioma de la aplicación</string>
-    <string name="switch_delete_pokemon">Permitir eliminación de Pokémon capturados</string>
-    <string name="confirm_delete_pokemon">¿Estás seguro de que deseas eliminar los Pokémon capturados?</string>
-    <string name="yes">Sí</string>
-    <string name="no">No</string>
-    <string name="about_title">Acerca de</string>
-    <string name="about_message">Aplicación desarrollada por David Escolar Godínez. Versión 1.0.0</string>
-    <string name="ok">Aceptar</string>
-    <string name="cancel">Cancelar</string>
-    <string name="delete_pokemon_title">Eliminar Pokémon</string>
-    <string name="delete_pokemon_message">¿Estás seguro de que deseas eliminar este Pokémon?</string>
-    <string name="delete">Eliminar</string>
-
-    <string name="pregunta_idioma">¿Deseas cambiar el idioma de la aplicación?</string>
-    <string name="cambio_idioma">Cambio de Idioma</string>
-    <string name="eliminarPokemon">Eliminar Pokémon</string>
-    <string name="pregunta_cerrar_sesion">¿Estás seguro de que deseas cerrar sesión?</string>
-    <string name="menu_acerca_de">Acerca de la aplicación</string>
-    <string name="mensaje_acerca">Aplicación desarrollada por David Escolar Godínez. Versión 1.0.0</string>
     <string name="men_cerrar_sesion">Has cerrado sesión correctamente</string>
-    <string name="error_eliminar_pokemon">Error al eliminar Pokémon</string>
-    <string name="mensaje_eliminados">Pokémon eliminados correctamente</string>
 
-    <string name="pokemon_index">Índice de Pokédex: %d</string>
-    <string name="pokemon_types">Tipos: %s</string>
-    <string name="pokemon_weight_height">Peso: %d, Altura: %d</string>
-
-    <string name="selecciona_idioma">Selecciona el idioma</string>
-    <string name="configuracion_idioma">Idioma</string>
-    <string name="cambio_idioma_aplicado">El idioma ha sido cambiado</string>
-
-    <!-- Textos para la actividad de registro -->
+    <!-- Mensajes de Registro -->
     <string name="enter_email">Please enter your email</string>
     <string name="enter_password">Please enter your password</string>
     <string name="passwords_do_not_match">Passwords do not match</string>
     <string name="password_too_short">Password must be at least 6 characters</string>
     <string name="registration_successful">Registration successful</string>
     <string name="registration_failed">Registration failed: %1$s</string>
+
+    <!-- Pokédex -->
+    <string name="capture">Capturar</string>
+    <string name="pokemon_index">Índice de Pokédex: %d</string>
+    <string name="pokemon_types">Tipos: %s</string>
+    <string name="pokemon_weight_height">Peso: %d, Altura: %d</string>
+
+    <!-- Configuración -->
+    <string name="language">Idioma</string>
+    <string name="switch_language">Selecciona el idioma de la aplicación</string>
+    <string name="configuracion_idioma">Idioma</string>
+    <string name="cambio_idioma_aplicado">El idioma ha sido cambiado</string>
+    <string name="pregunta_idioma">¿Deseas cambiar el idioma de la aplicación?</string>
+    <string name="cambio_idioma">Cambio de Idioma</string>
+    <string name="about_app">Acerca de</string>
+    <string name="about_title">Acerca de</string>
+    <string name="about_message">Aplicación desarrollada por David Escolar Godínez. Versión 1.0.0</string>
+    <string name="menu_acerca_de">Acerca de la aplicación</string>
+    <string name="enable_deletion">Habilitar Eliminación de Pokémon</string>
+    <string name="switch_delete_pokemon">Permitir eliminación de Pokémon capturados</string>
+
+    <!-- Mensajes de Confirmación -->
+    <string name="confirm_delete_pokemon">¿Estás seguro de que deseas eliminar los Pokémon capturados?</string>
+    <string name="delete_pokemon_title">Eliminar Pokémon</string>
+    <string name="delete_pokemon_message">¿Estás seguro de que deseas eliminar este Pokémon?</string>
+    <string name="pokemon_deleted">Mis Pokémon han sido eliminados</string>
+    <string name="delete">Eliminar</string>
+    <string name="pregunta_cerrar_sesion">¿Estás seguro de que deseas cerrar sesión?</string>
+
+    <!-- Mensajes de Error -->
+    <string name="error_eliminar_pokemon">Error al eliminar Pokémon</string>
+    <string name="mensaje_eliminados">Pokémon eliminados correctamente</string>
+
+    <!-- Perfil del Usuario -->
+    <string name="user_email">Usuario: %1$s</string>
+
+    <!-- Ajustes -->
+    <string name="delete_pokemon">Eliminar mis Pokémon</string>
+    <string name="selecciona_idioma">Selecciona el idioma</string>
 
 
 </resources>
