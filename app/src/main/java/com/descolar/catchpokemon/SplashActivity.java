@@ -5,32 +5,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private TextView loadingText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Configurar el idioma antes de cargar el contenido
+        setAppLanguage();
+
         setContentView(R.layout.activity_splash);
-
-        // Inicializamos el TextView del mensaje de carga
-        loadingText = findViewById(R.id.loading_text);
-
-        // Verificar el idioma seleccionado
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isEnglish = prefs.getBoolean("isEnglish", false); // Default to Spanish if not set
-
-        // Cambiar el texto según el idioma
-        if (isEnglish) {
-            loadingText.setText("Loading...");
-        } else {
-            loadingText.setText("Cargando...");
-        }
 
         // Temporizador para mostrar la splash screen durante 2 segundos
         new Handler().postDelayed(() -> {
@@ -41,12 +28,18 @@ public class SplashActivity extends AppCompatActivity {
         }, 2000); // 2000 milisegundos = 2 segundos
     }
 
-    // Método para cambiar el idioma dinámicamente
-    private void setLocale(String languageCode) {
+    private void setAppLanguage() {
+        // Cargar el idioma desde SharedPreferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String languageCode = prefs.getString("My_Lang", Locale.getDefault().getLanguage());
+
+        // Configurar el idioma seleccionado
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
+
         android.content.res.Configuration config = new android.content.res.Configuration();
-        config.locale = locale;
+        config.setLocale(locale);
+
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 }
