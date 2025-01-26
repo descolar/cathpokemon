@@ -1,6 +1,6 @@
 # CatchPokemon: Tu Pokédex Personal
 
-![Portada de la aplicación](./screenshots/portada_app.png)
+![splash](https://github.com/user-attachments/assets/d4bb3324-c9c2-4ebb-ae74-7442d8daa585)
 
 ## Introducción
 
@@ -17,15 +17,17 @@ CatchPokemon es una aplicación Android diseñada para cualquier amante de los P
 - **Pantalla de Inicio de Sesión:**
     - Opción para loguearte o registrarte.
     - Interfaz clara y sencilla para nuevos usuarios.
-
-  
+    - 
+![login](https://github.com/user-attachments/assets/200da03f-6956-4a2a-bd74-fced02b1ed3a)
+ 
 
 - **Pokédex:**
     - Explora una lista completa de Pokémon obtenida de la PokeAPI.
     - Visualiza detalles como el nombre, la imagen y el índice de Pokédex.
     - Captura Pokémon directamente desde la Pokédex.
+    - 
+![pokedex](https://github.com/user-attachments/assets/cae887c4-b390-482d-bdc9-64be3080bcd6)
 
-  ![Pokédex](./screenshots/pokedex_screen.png)
 
 - **Mis Pokémon:**
     - Lleva un registro de los Pokémon capturados.
@@ -39,13 +41,15 @@ CatchPokemon es una aplicación Android diseñada para cualquier amante de los P
     - Elimina todos los Pokémon capturados de tu lista.
     - Consulta información sobre la app en la sección "Acerca de".
     - Cierra sesión de manera segura desde cualquier dispositivo.
+    - 
+![settings](https://github.com/user-attachments/assets/6eab8b0a-75db-41dc-8c15-8091a7e53771)
 
-  ![Ajustes](./screenshots/settings_screen.png)
 
 - **Detalles de Pokémon:**
     - Visualiza una pantalla detallada con información como el tipo, índice, peso y altura de un Pokémon capturado.
 
-  ![Detalle de Pokémon](./screenshots/pokemon_details_screen.png)
+![detailCapturedDelete](https://github.com/user-attachments/assets/0ee51cc4-86ce-49c2-a4a6-5e94f167ca1f)
+
 
 ## Tecnologías Utilizadas
 
@@ -61,35 +65,21 @@ La aplicación **CatchPokemon** ha sido desarrollada utilizando las siguientes h
 - **RecyclerView:** Para mostrar listas de Pokémon y configuraciones de manera optimizada.
 - **PokeAPI:** API REST utilizada para obtener información detallada de los Pokémon.
 - **Google Sign-In:** Para autenticar a los usuarios mediante cuentas de Google.
-- **PreferenceFragmentCompat:** Para gestionar y configurar los ajustes de la app.
 
 ## Instrucciones de Uso
 
-Sigue estos pasos para instalar y ejecutar la aplicación:
+
 
 1. **Clonar el Repositorio:**
    ```bash
    git clone https://github.com/tu-usuario/catchpokemon.git
    ```
 
-2. **Abrir el Proyecto en Android Studio:**
-    - Abre Android Studio.
-    - Selecciona "Open an Existing Project".
-    - Navega hasta la carpeta donde clonaste el repositorio y ábrelo.
-
-3. **Configurar Firebase:**
-    - Crea un proyecto en la consola de Firebase.
-    - Añade una aplicación Android al proyecto de Firebase.
-    - Descarga el archivo `google-services.json` y colócalo en la carpeta `app` del proyecto.
-    - Habilita Firestore y Google Sign-In en la consola de Firebase.
-
-4. **Instalar Dependencias:**
-    - Android Studio debería detectar automáticamente las dependencias.
-    - Si es necesario, sincroniza el proyecto con los archivos Gradle (File > Sync Project with Gradle Files).
-
-5. **Ejecutar la Aplicación:**
+2. **Ejecutar la Aplicación:**
     - Conecta un dispositivo Android o inicia un emulador.
     - Haz clic en el botón "Run" (icono de play verde) en Android Studio.
+
+## Conclusiones del Desarrollador
 
 ## Conclusiones del Desarrollador
 
@@ -100,8 +90,7 @@ El desarrollo de CatchPokemon ha sido una experiencia enriquecedora que me permi
 - Mejorar habilidades en la gestión de bases de datos en tiempo real con Firestore.
 - Resolver problemas relacionados con la sincronización de datos y optimización de rendimiento.
 
-Los mayores desafíos fueron garantizar la estabilidad de las peticiones API y la correcta integración con Firebase Authentication. Sin embargo, estas dificultades se convirtieron en aprendizajes valiosos que me ayudarán en futuros proyectos.
+Además, reconozco que el alcance de la tarea ha sido un reto debido a que aún estoy asentando los conceptos de las unidades anteriores. Me hubiera encantado incluir mejores gráficos, efectos y otros detalles visuales que podrían hacer la aplicación más divertida y atractiva. A pesar de las dificultades, estoy satisfecho con el resultado y confío en que los aprendizajes obtenidos serán clave en futuros desarrollos.
 
-En resumen, CatchPokemon es una aplicación útil, divertida y diseñada para cualquier entrenador Pokémon.
 
 ---
