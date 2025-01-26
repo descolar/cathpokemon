@@ -35,7 +35,7 @@ public class UserPreferences {
     public void setLanguage(String language) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_LANGUAGE, language);
-        editor.apply(); // Aplicamos los cambios de manera asíncrona
+        editor.apply(); // Aplicamos los cambios
     }
 
     /**

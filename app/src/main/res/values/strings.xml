@@ -23,6 +23,10 @@
     <string name="logout">Cerrar Sesión</string>
     <string name="logout_message">Cerrar sesión de la aplicación</string>
     <string name="men_cerrar_sesion">Has cerrado sesión correctamente</string>
+    <string name="confirm_password_hint">Confirmar contraseña</string>
+    <string name="register_button">Registrar</string>
+    <string name="back_to_login">Volver a Iniciar Sesión</string>
+    <string name="register_title">Crear Cuenta</string>
 
     <!-- Mensajes de Registro -->
     <string name="enter_email">Please enter your email</string>
@@ -37,6 +41,12 @@
     <string name="pokemon_index">Índice de Pokédex: %d</string>
     <string name="pokemon_types">Tipos: %s</string>
     <string name="pokemon_weight_height">Peso: %d, Altura: %d</string>
+
+    <!-- Descripciones -->
+    <string name="pokemon_image">Image of Pokémon</string>
+    <string name="pokemon_name_placeholder">Pokemon Name</string>
+    <string name="pokemon_power_placeholder">Id: %d</string>
+
 
     <!-- Configuración -->
     <string name="language">Idioma</string>

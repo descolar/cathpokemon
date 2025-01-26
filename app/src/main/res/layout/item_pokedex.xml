@@ -20,7 +20,7 @@
             android:id="@+id/pokemonImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="descr"
+            android:contentDescription="@string/pokemon_image"
             android:layout_gravity="center" />
 
         <!-- Nombre del Pokémon -->
@@ -28,21 +28,20 @@
             android:id="@+id/pokemonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pokemon Name"
+            android:text="@string/pokemon_name_placeholder"
             android:textSize="14sp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginTop="4dp" />
 
-
+        <!-- Poder del Pokémon -->
         <TextView
             android:id="@+id/pokemonPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Power: 1001"
+            android:text="@string/pokemon_power_placeholder"
             android:textSize="12sp"
             android:gravity="center"
             android:layout_marginTop="2dp" />
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

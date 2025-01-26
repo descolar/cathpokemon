@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/white">
 
     <!-- Título de la pantalla -->
     <TextView
@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="Create Account"
-        android:textColor="#3B5998"
+        android:text="@string/register_title"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -24,9 +24,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Email"
+        android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
-        android:backgroundTint="#CCCCCC"
+        android:backgroundTint="@color/colorAccent"
         android:padding="12dp" />
 
     <!-- Campo de contraseña -->
@@ -38,9 +38,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Password"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
-        android:backgroundTint="#CCCCCC"
+        android:backgroundTint="@color/colorAccent"
         android:padding="12dp" />
 
     <!-- Confirmación de contraseña -->
@@ -52,9 +52,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password_hint"
         android:inputType="textPassword"
-        android:backgroundTint="#CCCCCC"
+        android:backgroundTint="@color/colorAccent"
         android:padding="12dp" />
 
     <!-- Botón de registrar -->
@@ -67,8 +67,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_button"
-        android:text="Register"
-        android:textColor="@android:color/white"
+        android:text="@string/register_button"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:padding="12dp" />
 
@@ -80,8 +80,7 @@
         android:layout_below="@id/registerButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Back to Login"
-        android:textColor="#3B5998"
+        android:text="@string/back_to_login"
+        android:textColor="@color/colorAccent"
         android:textSize="14sp" />
-
 </RelativeLayout>

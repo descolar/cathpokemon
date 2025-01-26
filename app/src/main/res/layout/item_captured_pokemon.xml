@@ -28,7 +28,7 @@
             android:id="@+id/pokemonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pokemon Name"
+            android:text="pokemon_name_placeholder"
             android:textSize="14sp"
             android:textStyle="bold"
             android:gravity="center"

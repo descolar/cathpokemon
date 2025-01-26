@@ -23,6 +23,10 @@
     <string name="logout">Log out</string>
     <string name="logout_message">Log out of the application</string>
     <string name="men_cerrar_sesion">You have successfully logged out</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="register_button">Register</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="register_title">Create Account</string>
 
     <!-- Registration Messages -->
     <string name="enter_email">Please enter your email</string>
@@ -37,6 +41,11 @@
     <string name="pokemon_index">Pokédex Index: %d</string>
     <string name="pokemon_types">Types: %s</string>
     <string name="pokemon_weight_height">Weight: %d, Height: %d</string>
+
+    <!-- Description -->
+    <string name="pokemon_image">Image of Pokémon</string>
+    <string name="pokemon_name_placeholder">Pokémon Name</string>
+    <string name="pokemon_power_placeholder">Power: %d</string>
 
     <!-- Settings -->
     <string name="language">Language</string>
