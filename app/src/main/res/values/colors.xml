@@ -13,6 +13,8 @@
     <color name="color_capturado">#FF0000</color>
     <color name="color_azul_pokedex">#3B4CCA</color>
     <color name="color_acento">#FFCC00</color>
+    <color name="bottom_nav_text_color">#FF0000</color> <!-- Rojo para el texto -->
+    <color name="bottom_nav_icon_color">#FF0000</color> <!-- Rojo para los iconos -->
 
     <!-- Colores para preferencias -->
     <color name="preference_title_color">#FF0000</color>
