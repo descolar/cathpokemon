@@ -11,66 +11,85 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.descolar.catchpokemon.PokedexAdapter;
-import com.descolar.catchpokemon.Pokemon;
-import com.descolar.catchpokemon.PokeApiResponse;
-//import com.descolar.catchpokemon.PokemonResult;
-import com.descolar.catchpokemon.PokeApiService;
-import com.descolar.catchpokemon.RetrofitClient;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Fragmento que muestra la lista de Pokémon disponibles en la Pokédex.
+ * Permite capturar Pokémon y guardarlos en Firestore.
+ */
 public class PokedexFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private PokedexAdapter adapter;
-    private List<Pokemon> pokemonList = new ArrayList<>();
+    private RecyclerView recyclerView; // RecyclerView para mostrar la Pokédex
+    private PokedexAdapter adapter; // Adaptador del RecyclerView
+    private List<Pokemon> pokemonList = new ArrayList<>(); // Lista de Pokémon
 
+    /**
+     * Infla el layout del fragmento y configura el RecyclerView.
+     *
+     * @param inflater           Inflador del layout.
+     * @param container          Contenedor padre.
+     * @param savedInstanceState Estado guardado (opcional).
+     * @return Vista inflada del fragmento.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pokedex, container, false);
 
+        // Configuramos el RecyclerView
         recyclerView = view.findViewById(R.id.recyclerViewPokedex);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3)); // Mostrar 3 Pokémon por fila
 
+        // Cargamos la lista de Pokémon desde la API
         fetchPokemonList();
 
         return view;
     }
 
+    /**
+     * Realiza una solicitud a la API para obtener la lista de Pokémon.
+     * Configura el adaptador para mostrar los datos en el RecyclerView.
+     */
     private void fetchPokemonList() {
         PokeApiService apiService = RetrofitClient.getInstance().create(PokeApiService.class);
         apiService.getPokemonList(0, 150).enqueue(new Callback<PokeApiResponse>() {
             @Override
             public void onResponse(Call<PokeApiResponse> call, Response<PokeApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    // Mapeamos los datos de la respuesta a nuestra lista de Pokémon
                     pokemonList = mapPokemonList(response.body().getResults());
+                    // Configuramos el adaptador
                     adapter = new PokedexAdapter(pokemonList, PokedexFragment.this::capturePokemon);
                     recyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(getContext(), "Error al cargar la lista de Pokémon", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PokeApiResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "Failed to load Pokémon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error de conexión con la API", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    /**
+     * Convierte la respuesta de la API en una lista de objetos Pokémon.
+     *
+     * @param results Lista de resultados de la API.
+     * @return Lista de Pokémon mapeados.
+     */
     private List<Pokemon> mapPokemonList(List<PokeApiResponse.PokemonResult> results) {
         List<Pokemon> pokemons = new ArrayList<>();
         for (PokeApiResponse.PokemonResult result : results) {
@@ -80,22 +99,25 @@ public class PokedexFragment extends Fragment {
             pokemons.add(new Pokemon(
                     id,
                     result.getName(),
-                    Collections.singletonList("Unknown Type"),
-                    0,
-                    0,
-                    Collections.singletonList("Unknown Ability"),
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"
+                    Collections.singletonList("Unknown Type"), // Tipo desconocido inicialmente
+                    0, // Peso desconocido inicialmente
+                    0, // Altura desconocida inicialmente
+                    Collections.singletonList("Unknown Ability"), // Habilidades desconocidas
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png" // Imagen del Pokémon
             ));
         }
         return pokemons;
     }
 
-
-
+    /**
+     * Captura un Pokémon y lo guarda en Firestore.
+     * Realiza una solicitud a la API para obtener sus detalles completos.
+     *
+     * @param pokemon Pokémon que será capturado.
+     */
     private void capturePokemon(Pokemon pokemon) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Realizar petición a la API para obtener los detalles completos del Pokémon
         PokeApiService apiService = RetrofitClient.getInstance().create(PokeApiService.class);
         Call<Object> call = apiService.getPokemonDetails(pokemon.getId());
 
@@ -104,16 +126,15 @@ public class PokedexFragment extends Fragment {
             public void onResponse(Call<Object> call, Response<Object> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     try {
-                        // Procesar el JSON manualmente
+                        // Procesamos la respuesta JSON
                         JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
 
-                        // Extraer los datos necesarios
+                        // Extraemos los datos del Pokémon
                         String name = jsonObject.getString("name");
                         int id = jsonObject.getInt("id");
                         int height = jsonObject.getInt("height");
                         int weight = jsonObject.getInt("weight");
 
-                        // Tipos
                         List<String> types = new ArrayList<>();
                         JSONArray typesArray = jsonObject.getJSONArray("types");
                         for (int i = 0; i < typesArray.length(); i++) {
@@ -121,10 +142,9 @@ public class PokedexFragment extends Fragment {
                             types.add(typeObject.getString("name"));
                         }
 
-                        // URL de la imagen
                         String imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png";
 
-                        // Crear el objeto para guardar en Firestore
+                        // Creamos el objeto para Firestore
                         Map<String, Object> capturedPokemon = new HashMap<>();
                         capturedPokemon.put("id", id);
                         capturedPokemon.put("name", name);
@@ -133,7 +153,7 @@ public class PokedexFragment extends Fragment {
                         capturedPokemon.put("height", height);
                         capturedPokemon.put("imageUrl", imageUrl);
 
-                        // Guardar en Firestore
+                        // Guardamos en Firestore
                         db.collection("captured_pokemons")
                                 .document(String.valueOf(id))
                                 .set(capturedPokemon)
@@ -158,8 +178,4 @@ public class PokedexFragment extends Fragment {
             }
         });
     }
-
-
-
-
 }

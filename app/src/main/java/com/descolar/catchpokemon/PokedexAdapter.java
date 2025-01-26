@@ -8,24 +8,45 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.descolar.catchpokemon.Pokemon;
-import com.descolar.catchpokemon.R;
+
 import java.util.List;
 
+/**
+ * Adaptador para el RecyclerView que muestra la Pokédex.
+ * Muestra una lista de Pokémon con su nombre, imagen y un atributo calculado como "poder".
+ */
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHolder> {
 
+    // Lista de Pokémon que se mostrarán
     private List<Pokemon> pokemonList;
-    private OnPokemonClickListener clickListener;
+    // Listener para manejar los clics en los elementos
+    private final OnPokemonClickListener clickListener;
 
+    /**
+     * Interfaz para manejar los clics en los elementos de la lista.
+     */
     public interface OnPokemonClickListener {
         void onPokemonClick(Pokemon pokemon);
     }
 
+    /**
+     * Constructor del adaptador.
+     *
+     * @param pokemonList   Lista de Pokémon a mostrar.
+     * @param clickListener Listener para manejar los clics en los Pokémon.
+     */
     public PokedexAdapter(List<Pokemon> pokemonList, OnPokemonClickListener clickListener) {
         this.pokemonList = pokemonList;
         this.clickListener = clickListener;
     }
 
+    /**
+     * Infla el layout para cada elemento de la lista.
+     *
+     * @param parent   Contenedor padre donde se infla el layout.
+     * @param viewType Tipo de vista (único en este caso).
+     * @return Un ViewHolder que contiene la vista inflada.
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,23 +54,29 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    /**
+     * Enlaza los datos del Pokémon al ViewHolder.
+     *
+     * @param holder   ViewHolder que representa el elemento actual.
+     * @param position Posición del Pokémon en la lista.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon pokemon = pokemonList.get(position);
 
-        // Establecer el nombre del Pokémon
+        // Establecemos el nombre del Pokémon
         holder.name.setText(pokemon.getName());
 
-        // Usar el ID como poder
+        // Mostramos el "poder" del Pokémon usando su ID
         String power = "Power: " + calculatePokemonPower(pokemon);
         holder.power.setText(power);
 
-        // Cargar la imagen usando Glide
+        // Cargamos la imagen del Pokémon usando Glide
         Glide.with(holder.itemView.getContext())
                 .load(pokemon.getImageUrl()) // URL de la imagen
                 .into(holder.image);
 
-        // Manejar el clic en la tarjeta
+        // Configuramos el clic en el elemento
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
                 clickListener.onPokemonClick(pokemon);
@@ -57,24 +84,39 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
         });
     }
 
-
-    // Método para calcular el poder del Pokémon
+    /**
+     * Calcula el "poder" del Pokémon basado en su ID.
+     *
+     * @param pokemon Pokémon del que se calculará el poder.
+     * @return Poder del Pokémon.
+     */
     private int calculatePokemonPower(Pokemon pokemon) {
-        // Usar el ID del Pokémon como poder
-        return pokemon.getId();
+        return pokemon.getId(); // Usamos el ID como "poder"
     }
 
-
+    /**
+     * Devuelve el número de elementos en la lista.
+     *
+     * @return Tamaño de la lista de Pokémon.
+     */
     @Override
     public int getItemCount() {
         return pokemonList.size();
     }
 
+    /**
+     * ViewHolder que contiene las vistas de cada elemento de la lista.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
-        TextView power;
-        ImageView image;
+        TextView name; // Nombre del Pokémon
+        TextView power; // "Poder" del Pokémon (basado en su ID)
+        ImageView image; // Imagen del Pokémon
 
+        /**
+         * Constructor del ViewHolder. Enlaza las vistas con los elementos del layout.
+         *
+         * @param itemView Vista del elemento inflado.
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.pokemonName);

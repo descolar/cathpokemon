@@ -51,4 +51,12 @@
     <string name="configuracion_idioma">Language</string>
     <string name="cambio_idioma_aplicado">Language has been changed</string>
 
+    <!-- Textos para la actividad de registro -->
+    <string name="enter_email">Please enter your email</string>
+    <string name="enter_password">Please enter your password</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="password_too_short">Password must be at least 6 characters</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="registration_failed">Registration failed: %1$s</string>
+
 </resources>

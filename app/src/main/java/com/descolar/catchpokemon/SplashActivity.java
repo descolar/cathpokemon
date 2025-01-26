@@ -8,38 +8,52 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
+/**
+ * Actividad de inicio que muestra una pantalla de bienvenida (splash screen)
+ * y configura el idioma de la aplicación antes de cargar el contenido principal.
+ */
 public class SplashActivity extends AppCompatActivity {
 
+    /**
+     * Método que se ejecuta al crear la actividad.
+     * Configura el idioma y muestra la pantalla de bienvenida.
+     *
+     * @param savedInstanceState Estado guardado de la actividad.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Configurar el idioma antes de cargar el contenido
+        // Configuramos el idioma antes de cargar el contenido
         setAppLanguage();
 
         setContentView(R.layout.activity_splash);
 
-        // Temporizador para mostrar la splash screen durante 2 segundos
+        // Mostramos la splash screen durante 2 segundos
         new Handler().postDelayed(() -> {
-            // Inicia MainActivity después de 2 segundos
+            // Iniciamos MainActivity después del temporizador
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
-            finish(); // Cierra la SplashActivity
+            finish(); // Cerramos la SplashActivity
         }, 2000); // 2000 milisegundos = 2 segundos
     }
 
+    /**
+     * Configura el idioma de la aplicación basado en las preferencias del usuario.
+     */
     private void setAppLanguage() {
-        // Cargar el idioma desde SharedPreferences
+        // Obtenemos el idioma guardado en las preferencias
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String languageCode = prefs.getString("My_Lang", Locale.getDefault().getLanguage());
 
-        // Configurar el idioma seleccionado
+        // Configuramos el idioma seleccionado
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
 
         android.content.res.Configuration config = new android.content.res.Configuration();
         config.setLocale(locale);
 
+        // Actualizamos las configuraciones de recursos con el idioma seleccionado
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 }
