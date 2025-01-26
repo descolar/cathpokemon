@@ -1,50 +1,66 @@
 package com.descolar.catchpokemon;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.util.Locale;
 
 /**
- * Actividad de inicio que muestra una pantalla de bienvenida (splash screen)
- * y configura el idioma de la aplicación antes de cargar el contenido principal.
+ * Clase SplashActivity
+ * Esta clase muestra una pantalla de inicio con un temporizador y redirige al usuario a
+ * la actividad correspondiente según el estado de autenticación.
  */
 public class SplashActivity extends AppCompatActivity {
 
     /**
-     * Método que se ejecuta al crear la actividad.
-     * Configura el idioma y muestra la pantalla de bienvenida.
+     * Método onCreate
+     * Configura la pantalla de inicio y determina si el usuario debe dirigirse
+     * a LoginActivity o MainActivity en función de su estado de autenticación.
      *
-     * @param savedInstanceState Estado guardado de la actividad.
+     * @param savedInstanceState Estado previamente guardado de la actividad.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Configuramos el idioma antes de cargar el contenido
         setAppLanguage();
 
+        // Establecemos el diseño de la pantalla Splash
         setContentView(R.layout.activity_splash);
 
-        // Mostramos la splash screen durante 2 segundos
+        // Mostramos la pantalla de carga durante 2 segundos antes de redirigir
         new Handler().postDelayed(() -> {
-            // Iniciamos MainActivity después del temporizador
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            // Verificamos si el usuario está autenticado
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            FirebaseUser currentUser = auth.getCurrentUser();
+
+            Intent intent;
+            if (currentUser != null) {
+                // Usuario autenticado, redirigir a MainActivity
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+            } else {
+                // Usuario no autenticado, redirigir a LoginActivity
+                intent = new Intent(SplashActivity.this, LoginActivity.class);
+            }
+
             startActivity(intent);
             finish(); // Cerramos la SplashActivity
         }, 2000); // 2000 milisegundos = 2 segundos
     }
 
     /**
-     * Configura el idioma de la aplicación basado en las preferencias del usuario.
+     * Configura el idioma de la aplicación según las preferencias del usuario.
+     * Este método asegura que la interfaz se muestre en el idioma seleccionado.
      */
     private void setAppLanguage() {
-        // Obtenemos el idioma guardado en las preferencias
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String languageCode = prefs.getString("My_Lang", Locale.getDefault().getLanguage());
+        // Cargamos el idioma guardado desde las preferencias
+        String languageCode = getSharedPreferences("user_preferences", MODE_PRIVATE)
+                .getString("language", "es"); // Idioma predeterminado: español
 
         // Configuramos el idioma seleccionado
         Locale locale = new Locale(languageCode);
@@ -53,7 +69,6 @@ public class SplashActivity extends AppCompatActivity {
         android.content.res.Configuration config = new android.content.res.Configuration();
         config.setLocale(locale);
 
-        // Actualizamos las configuraciones de recursos con el idioma seleccionado
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 }

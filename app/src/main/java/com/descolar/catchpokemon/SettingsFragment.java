@@ -172,12 +172,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      * Cierra la sesión de Google y redirige al usuario al Login.
      */
     private void signOut() {
-        GoogleSignIn.getClient(getContext(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
-                .signOut()
-                .addOnCompleteListener(requireActivity(), task -> {
-                    Toast.makeText(getContext(), R.string.men_cerrar_sesion, Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getContext(), LoginActivity.class));
-                    requireActivity().finish();
-                });
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignIn.getClient(
+                requireContext(),
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+        ).signOut().addOnCompleteListener(task -> {
+            Toast.makeText(getContext(), R.string.men_cerrar_sesion, Toast.LENGTH_SHORT).show();
+            // Redirigir a LoginActivity
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+        });
     }
+
 }

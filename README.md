@@ -90,7 +90,8 @@ El desarrollo de CatchPokemon ha sido una experiencia enriquecedora que me permi
 - Mejorar habilidades en la gestión de bases de datos en tiempo real con Firestore.
 - Resolver problemas relacionados con la sincronización de datos y optimización de rendimiento.
 
-Además, reconozco que el alcance de la tarea ha sido un reto debido a que aún estoy asentando los conceptos de las unidades anteriores. Me hubiera encantado incluir mejores gráficos, efectos y otros detalles visuales que podrían hacer la aplicación más divertida y atractiva. A pesar de las dificultades, estoy satisfecho con el resultado y confío en que los aprendizajes obtenidos serán clave en futuros desarrollos.
+Además, reconozco que el alcance de la tarea ha sido un reto debido a que aún estoy asentando los conceptos de las unidades anteriores. 
+Me hubiera encantado incluir mejores gráficos, efectos y otros detalles visuales que podrían hacer la aplicación más divertida y atractiva. A pesar de las dificultades, estoy satisfecho con el resultado y confío en que los aprendizajes obtenidos serán clave en futuros desarrollos.
 
 
 ---
