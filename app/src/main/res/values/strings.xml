@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Acthpokemo</string>
+    <string name="app_name">CatchPokemon</string>
     <string name="login_screen_title">Iniciar Sesión</string>
     <string name="email_hint">Correo Electrónico</string>
     <string name="password_hint">Contraseña</string>
